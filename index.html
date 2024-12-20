@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,89 +13,139 @@
             background: linear-gradient(to bottom right, #f0f8ff, #dbe9f4);
             color: #333;
         }
+
         .container {
             max-width: 100%;
             width: 600px;
-            margin: 50px auto;
+            margin: 0px auto;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
+
         header {
-            background: #4caf50;
+            background: #ffaa00;
             color: white;
             padding: 20px;
             text-align: center;
             font-size: 1.5em;
             font-weight: bold;
         }
+
         .content {
-            padding: 20px;
+            padding: 0px 20px 20px 20px;
         }
+
         h2 {
-            border-bottom: 2px solid #4caf50;
+            /* border-bottom: 2px solid #ff8000; */
             padding-bottom: 5px;
             margin-bottom: 15px;
-            color: #4caf50;
+            color: #ff8000;
         }
+
+        h4 {
+            border-top: 2px solid #ff8000;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            padding: 2px 0px 0px 20px;
+            color: #7d3f00;
+        }
+
         .product-options {
             margin-bottom: 20px;
         }
+
         label {
             margin-right: 10px;
             color: #555;
         }
-        select, input[type="number"] {
+
+        select,
+        input[type="number"] {
             padding: 5px 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
         }
+
         input[type="checkbox"] {
             margin-right: 5px;
         }
+
         .total-price {
             font-size: 1.5em;
             font-weight: bold;
             text-align: center;
             margin-top: 20px;
             padding: 10px;
-            background: #f7f7f7;
+            background: #ff8000;
             border: 1px solid #eee;
             border-radius: 5px;
         }
-        footer {
-            background: #f0f8ff;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-            color: #666;
-        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>供电拓展板价格计算器</header>
         <div class="content">
             <div class="product-options">
-                <h2>选择接口型号</h2>
-                <form id="product-form">
+                <h2>选择接口配置：</h2>
+                <h4>左边供电输入</h4>
+                <div style="width: 100%; position: relative; overflow: hidden;">
+                    <img src="img/l_in_xt.png" style="width: 100%; margin: -12% 0% -10% 0%;">
+                    <img id="l_in_dc" src="img/l_in_dc.png"
+                        style="width: 100%; margin: -12% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 2; display: none">
+                    <img id="l_in_none" src="img/l_in_none.png"
+                        style="width: 100%; margin: -12% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 1; display: none">
+                </div>
+                <form id="left-input-form">
                     <div>
-                        <label for="main-power">输入/级联 1：</label>
+                        <label for="main-power">接口类型：</label>
                         <select id="main-power" name="main-power">
                             <option value="xt60-m" data-price="3">XT60-公头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
+                            <option value="none" data-price="0">无</option>
                         </select>
                     </div>
+                </form>
+
+                <h4>右边供电输入</h4>
+                <div style="width: 100%; position: relative; overflow: hidden;">
+                    <img src="img/r_in_xt.png" style="width: 100%; margin: -12% 0% -10% 0%;">
+                    <img id="r_in_dc" src="img/r_in_dc.png"
+                        style="width: 100%; margin: -12% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 2; display: none">
+                    <img id="r_in_none" src="img/r_in_none.png"
+                        style="width: 100%; margin: -12% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 1; display: none">
+                </div>
+                <form id="right-input-form">
                     <div>
-                        <label for="cascade-output">输入/级联 2：</label>
-                        <select id="cascade-output" name="cascade-output">
+                        <label for="main-power_2">接口类型：</label>
+                        <select id="main-power_2" name="main-power_2">
                             <option value="xt60-f" data-price="3">XT60-母头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
                             <option value="none" data-price="0">无</option>
                         </select>
                     </div>
+                </form>
+                
+                <h4>选择 供电输出 接口型号</h4>
+                <label>背面视图，从左往右为5👉1</label>
+                <div style="width: 100%; position: relative; overflow: hidden;">
+                    <img src="img/xt30.png" style="width: 100%; margin: -7% 0% -10% 0%;">
+                    <img id="dc_5" src="img/dc_5.png"
+                        style="width: 100%; margin: -7% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 1; display: none">
+                    <img id="dc_4" src="img/dc_4.png"
+                        style="width: 100%; margin: -7% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 2; display: none">
+                    <img id="dc_3" src="img/dc_3.png"
+                        style="width: 100%; margin: -7% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 3; display: none">
+                    <img id="dc_2" src="img/dc_2.png"
+                        style="width: 100%; margin: -7% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 4; display: none">
+                    <img id="dc_1" src="img/dc_1.png"
+                        style="width: 100%; margin: -7% 0% -10% 0%; position: absolute; top: 0; left: 0; z-index: 5; display: none">
+                </div>
+                <form id="output-form">
                     <div>
                         <label for="output1">供电输出1：</label>
                         <select id="output1" name="output1">
@@ -102,171 +153,245 @@
                             <option value="dc5525" data-price="1">DC-5525</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-top: 2px;">
                         <label for="output2">供电输出2：</label>
                         <select id="output2" name="output2">
                             <option value="xt30-f" data-price="2">XT30-母头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-top: 2px;">
                         <label for="output3">供电输出3：</label>
                         <select id="output3" name="output3">
                             <option value="xt30-f" data-price="2">XT30-母头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-top: 2px;">
                         <label for="output4">供电输出4：</label>
                         <select id="output4" name="output4">
                             <option value="xt30-f" data-price="2">XT30-母头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-top: 2px;">
                         <label for="output5">供电输出5：</label>
                         <select id="output5" name="output5">
                             <option value="xt30-f" data-price="2">XT30-母头</option>
                             <option value="dc5525" data-price="1">DC-5525</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-top: 2px;">
                         <label for="usb">4口USB模块：</label>
                         <select id="usb" name="usb">
                             <option value="usb0" data-price="0">0个</option>
                             <option value="usb1" data-price="11">1个</option>
-                            <option value="usb2" data-price="22">2个</option>
-                            <option value="usb3" data-price="33">3个</option>
                         </select>
                     </div>
-                    <div style="margin-top: 10px;">
-                        <label for="quantity1">数量：</label>
-                        <input type="number" id="quantity1" name="quantity1" value="1" min="1">
+                    <div style="margin-top: 15px;">
+                        <label for="quantity_1">数量：</label>
+                        <input type="number" id="quantity_1" name="quantity_1" value="1" min="1">
+                    </div>
+                </form>
+                <h4></h4>
+            </div>
+
+            <div class="product-options">
+                <h2>其他配件：</h2>
+                <form id="accessory-form">
+                    <h4>主供电输入线</h4>
+                    <div>
+                        <label>是否需要：</label>
+                        <select id="need_main_line" name="need_main_line">
+                            <option>是</option>
+                            <option>否</option>
+                        </select>
+                    </div>
+                    <div id="main_line_hide">
+                        <div style="margin-top: 10px;">
+                            <label>插头类型：</label>
+                            <select id="main_line_plug" name="main_line_plug">
+                                <option value="xt60-m" data-price="3">XT60-公头</option>
+                                <option value="xt60-f" data-price="3">XT60-母头</option>
+                                <option value="xt60-f" data-price="2">DC-5525-公头</option>
+                            </select>
+                            <label>转</label>
+                            <select id="main_line_plug" name="main_line_plug">
+                                <option value="xt60-m" data-price="3">XT60-公头</option>
+                                <option value="xt60-f" data-price="3">XT60-母头</option>
+                                <option value="xt60-f" data-price="2">DC-5525-公头</option>
+                            </select>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <label for="main_line_length">长度：</label>
+                            <input type="number" style="width: 80px;" id="main_line_length" name="main_line_length" value="10" min="10"
+                                step="10">
+                            <label for="main_line_length">cm</label>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <label for="main_line_quantity">数量：</label>
+                            <input type="number" id="main_line_quantity" name="main_line_quantity" value="1" min="1">
+                        </div>
                     </div>
                 </form>
             </div>
-            <div class="product-options">
-            <h2>主供电线：</h2>
-            <form id="accessory-form">
-                <div>
-                    <label for="accessory1">插头类型：</label>
-                    <select id="accessory1" name="accessory1"></select>
-                </div>
-                <div id="accessory1_hide" style="margin-top: 10px;">
-                    <label for="length">长度：</label>
-                    <input type="number" style="width: 80px;" id="length" name="length" value="10" min="10" step="10">
-                    <label for="length">cm</label>
-                </div>
-                <div id="accessory1_hide2" style="margin-top: 10px;">
-                    <label for="quantity2">数量：</label>
-                    <input type="number" id="quantity2" name="quantity2" value="1" min="1">
-                </div>
-            </form>
-        </div>
-        <div class="total-price">
-            总价：￥<span id="price">0.00</span>
+            <div class="total-price">
+                总价：￥<span id="price">0.00</span>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function updateAccessoryOptions() {
-        const mainPower = document.getElementById('main-power');
-        const selectedOption = mainPower.options[mainPower.selectedIndex];
-        const mainPowerValue = selectedOption.innerHTML;
-
-        const accessory1 = document.getElementById('accessory1');
-        if (mainPowerValue == "XT60-公头") {
-            accessory1.innerHTML = `
-                <option value="xt60-m" data-price="6">XT60-公头 转 ${mainPowerValue}</option>
-                <option value="xt60-f" data-price="6">XT60-母头 转 ${mainPowerValue}</option>
-                <option value="xt60-f" data-price="5">DC-5525-公头 转 ${mainPowerValue}</option>
-                <option value="none" data-price="0">无</option>
-            `;
-        } else if (mainPowerValue == "DC-5525") {
-            accessory1.innerHTML = `
-                <option value="xt60-m" data-price="5">XT60-公头 转 DC-5525-公头</option>
-                <option value="xt60-f" data-price="5">XT60-母头 转 DC-5525-公头</option>
-                <option value="dc5525" data-price="4">DC-5525-公头 转 DC-5525-公头</option>
-                <option value="none" data-price="0">无</option>
-            `;
+    <script>
+        function updateAccessoryOptions() {
+            const need_main_line = document.getElementById('need_main_line');
+            const need_main_line_Value = need_main_line.options[need_main_line.selectedIndex].innerHTML;
+            if (need_main_line_Value == "是") {
+                // 隐藏长度和数量输入框
+                document.getElementById('main_line_hide').style.display = 'block';
+            } else {
+                // 显示长度和数量输入框
+                document.getElementById('main_line_hide').style.display = 'none';
+            }
         }
-    }
-    function updateAccessoryOptions2() {
-        const accessory1 = document.getElementById('accessory1');
-        const accessory1Value = accessory1.options[accessory1.selectedIndex].innerHTML;
-        if (accessory1Value == "无") {
-            // 隐藏长度和数量输入框
-            document.getElementById('accessory1_hide').style.display = 'none';
-            document.getElementById('accessory1_hide2').style.display = 'none';
-        } else {
-            // 显示长度和数量输入框
-            document.getElementById('accessory1_hide').style.display = 'block';
-            document.getElementById('accessory1_hide2').style.display = 'block';
+
+        function calculatePrice() {
+            // 改变输入图片
+            const main_power = document.getElementById('main-power');
+            const main_power_Value = main_power.options[main_power.selectedIndex].innerHTML;
+            if (main_power_Value == "XT60-公头") {
+                document.getElementById('l_in_dc').style.display = 'none';
+                document.getElementById('l_in_none').style.display = 'none';
+            } else if (main_power_Value == "DC-5525") {
+                document.getElementById('l_in_dc').style.display = 'block';
+                document.getElementById('l_in_none').style.display = 'none';
+            } else {
+                document.getElementById('l_in_dc').style.display = 'none';
+                document.getElementById('l_in_none').style.display = 'block';
+            }
+            const main_power_2 = document.getElementById('main-power_2');
+            const main_power_2_Value = main_power_2.options[main_power_2.selectedIndex].innerHTML;
+            if (main_power_2_Value == "XT60-母头") {
+                document.getElementById('r_in_dc').style.display = 'none';
+                document.getElementById('r_in_none').style.display = 'none';
+            } else if (main_power_2_Value == "DC-5525") {
+                document.getElementById('r_in_dc').style.display = 'block';
+                document.getElementById('r_in_none').style.display = 'none';
+            } else {
+                document.getElementById('r_in_dc').style.display = 'none';
+                document.getElementById('r_in_none').style.display = 'block';
+            }
+            // 改变输出图片
+            const output1 = document.getElementById('output1');
+            const output1_Value = output1.options[output1.selectedIndex].innerHTML;
+            if (output1_Value == "DC-5525") {
+                document.getElementById('dc_1').style.display = 'block';
+            } else {
+                document.getElementById('dc_1').style.display = 'none';
+            }
+            const output2 = document.getElementById('output2');
+            const output2_Value = output2.options[output2.selectedIndex].innerHTML;
+            if (output2_Value == "DC-5525") {
+                document.getElementById('dc_2').style.display = 'block';
+            } else {
+                document.getElementById('dc_2').style.display = 'none';
+            }
+            const output3 = document.getElementById('output3');
+            const output3_Value = output3.options[output3.selectedIndex].innerHTML;
+            if (output3_Value == "DC-5525") {
+                document.getElementById('dc_3').style.display = 'block';
+            } else {
+                document.getElementById('dc_3').style.display = 'none';
+            }
+            const output4 = document.getElementById('output4');
+            const output4_Value = output4.options[output4.selectedIndex].innerHTML;
+            if (output4_Value == "DC-5525") {
+                document.getElementById('dc_4').style.display = 'block';
+            } else {
+                document.getElementById('dc_4').style.display = 'none';
+            }
+            const output5 = document.getElementById('output5');
+            const output5_Value = output5.options[output5.selectedIndex].innerHTML;
+            if (output5_Value == "DC-5525") {
+                document.getElementById('dc_5').style.display = 'block';
+            } else {
+                document.getElementById('dc_5').style.display = 'none';
+            }
+
+            // 初始化拓展板总价为0
+            let totalBasePrice = 0;
+
+            // 获取输入选项价格
+            document.querySelectorAll('#right-input-form select').forEach(select => {
+                const selectedOption = select.options[select.selectedIndex];
+                totalBasePrice += parseFloat(selectedOption.dataset.price || 0);
+            });
+            document.querySelectorAll('#left-input-form select').forEach(select => {
+                const selectedOption = select.options[select.selectedIndex];
+                totalBasePrice += parseFloat(selectedOption.dataset.price || 0);
+            });
+            // 获取输出选项价格
+            document.querySelectorAll('#output-form select').forEach(select => {
+                const selectedOption = select.options[select.selectedIndex];
+                totalBasePrice += parseFloat(selectedOption.dataset.price || 0);
+            });
+
+
+            // 拓展板数量
+            const quantity_1 = Math.max(1, parseInt(document.getElementById('quantity_1').value) || 1);
+
+            // 拓展板总价
+            totalBasePrice = (totalBasePrice + 15) * quantity_1;
+            
+
+
+            
+
+            // 获取长度价格
+            const main_line_length = Math.max(10, parseInt(document.getElementById('main_line_length').value) || 10);
+            const main_line_length_price = Math.ceil(main_line_length / 10) * 1; // 每10cm 1元
+
+            // 配件数量
+            const main_line_quantity = Math.max(1, parseInt(document.getElementById('main_line_quantity').value) || 1);
+
+            // 获取插头价格
+            let main_line_plug_price = 0;
+            document.querySelectorAll('#accessory-form select').forEach(select => {
+                const selectedOption = select.options[select.selectedIndex];
+                main_line_plug_price += parseFloat(selectedOption.dataset.price || 0);
+            });
+            main_line_price = (main_line_plug_price + main_line_length_price) * main_line_quantity;
+
+            const need_main_line = document.getElementById('need_main_line');
+            const need_main_line_Value = need_main_line.options[need_main_line.selectedIndex].innerHTML;
+            if (need_main_line_Value == "否") {
+                main_line_price = 0;
+            }
+            accessoryPrice = main_line_price;
+
+            // 总价计算
+            const totalPrice = 6 + totalBasePrice + accessoryPrice;
+            document.getElementById('price').textContent = totalPrice.toFixed(2);
         }
-    }
 
-    function calculatePrice() {
-        let totalBasePrice = 0;
 
-        // 获取主表单选项价格
-        document.querySelectorAll('#product-form select').forEach(select => {
-            const selectedOption = select.options[select.selectedIndex];
-            totalBasePrice += parseFloat(selectedOption.dataset.price || 0);
+
+        // 监听主供电线变化动态更新选项
+        document.getElementById('need_main_line').addEventListener('change', () => {
+            updateAccessoryOptions();
+            calculatePrice();
         });
 
-        // 计算主表单数量
-        const quantity1 = Math.max(1, parseInt(document.getElementById('quantity1').value) || 1);
+        // 监听所有表单的变化
+        document.getElementById('right-input-form').addEventListener('change', calculatePrice);
+        document.getElementById('left-input-form').addEventListener('change', calculatePrice);
+        document.getElementById('output-form').addEventListener('change', calculatePrice);
+        document.getElementById('accessory-form').addEventListener('change', calculatePrice);
+        document.getElementById('accessory-form').addEventListener('input', calculatePrice);
 
-        // 获取长度价格
-        const length = Math.max(10, parseInt(document.getElementById('length').value) || 10);
-        const lengthPrice = Math.ceil(length / 10) * 1; // 每10cm 1元
-
-        // 配件数量
-        const quantity2 = Math.max(1, parseInt(document.getElementById('quantity2').value) || 1);
-
-        
-        // 获取配件选项价格
-        let accessoryPrice = 0;
-        document.querySelectorAll('#accessory-form select').forEach(select => {
-            const selectedOption = select.options[select.selectedIndex];
-            accessoryPrice += parseFloat(selectedOption.dataset.price || 0);
-        });
-        accessoryPrice = (accessoryPrice * quantity2) + (lengthPrice * quantity2);
-
-        const accessory1 = document.getElementById('accessory1');
-        const accessory1Value = accessory1.options[accessory1.selectedIndex].innerHTML;
-        if (accessory1Value == "无") {
-            accessoryPrice = 0;
-        }
-
-
-        // 总价计算
-        const totalPrice = 6 + (totalBasePrice * quantity1) + (15 * quantity1) + accessoryPrice;
-        document.getElementById('price').textContent = totalPrice.toFixed(2);
-    }
-
-    // 监听主供电输入变化动态更新选项
-    document.getElementById('main-power').addEventListener('change', () => {
+        // 初始化默认配置
         updateAccessoryOptions();
         calculatePrice();
-    });
-
-    // 监听主供电线变化动态更新选项
-    document.getElementById('accessory1').addEventListener('change', () => {
-        updateAccessoryOptions2();
-        calculatePrice();
-    });
-
-    // 监听所有表单的变化
-    document.getElementById('product-form').addEventListener('change', calculatePrice);
-    document.getElementById('product-form').addEventListener('input', calculatePrice);
-    document.getElementById('accessory-form').addEventListener('change', calculatePrice);
-    document.getElementById('accessory-form').addEventListener('input', calculatePrice);
-
-    // 初始化默认配置
-    updateAccessoryOptions();
-    calculatePrice();
-</script>
+    </script>
 </body>
+
 </html>
