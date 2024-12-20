@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
@@ -79,10 +79,17 @@
             text-align: center;
             margin-top: 20px;
             padding: 10px;
-            background: #ff8000;
+            /* background: #ff8000; */
             border: 1px solid #eee;
             border-radius: 5px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
         }
+
     </style>
 </head>
 
@@ -129,7 +136,7 @@
                         </select>
                     </div>
                 </form>
-                
+
                 <h4>选择 供电输出 接口型号</h4>
                 <label>背面视图，从左往右为5👉1</label>
                 <div style="width: 100%; position: relative; overflow: hidden;">
@@ -224,8 +231,8 @@
                         </div>
                         <div style="margin-top: 10px;">
                             <label for="main_line_length">长度：</label>
-                            <input type="number" style="width: 80px;" id="main_line_length" name="main_line_length" value="10" min="10"
-                                step="10">
+                            <input type="number" style="width: 80px;" id="main_line_length" name="main_line_length"
+                                value="10" min="10" step="10">
                             <label for="main_line_length">cm</label>
                         </div>
                         <div style="margin-top: 10px;">
@@ -234,6 +241,8 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div style="margin-bottom: 50px;">
             </div>
             <div class="total-price">
                 总价：￥<span id="price">0.00</span>
@@ -341,10 +350,10 @@
 
             // 拓展板总价
             totalBasePrice = (totalBasePrice + 15) * quantity_1;
-            
 
 
-            
+
+
 
             // 获取长度价格
             const main_line_length = Math.max(10, parseInt(document.getElementById('main_line_length').value) || 10);
