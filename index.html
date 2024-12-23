@@ -89,7 +89,6 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
         }
-
     </style>
 </head>
 
@@ -378,8 +377,10 @@
             accessoryPrice = main_line_price;
 
             // 总价计算
-            const totalPrice = 6 + totalBasePrice + accessoryPrice;
+            const totalPrice = Math.ceil(6 + totalBasePrice + accessoryPrice);
             document.getElementById('price').textContent = totalPrice.toFixed(2);
+            
+
         }
 
 
